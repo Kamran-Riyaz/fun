@@ -1,46 +1,70 @@
 body {
-  margin: 50px;
-  font-family: Lucida Handwriting;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
 }
 
-#glow {
-  font-size: 30px;
-  color: green;
-  text-align: center;
-  animation: glow 1s ease-in-out infinite alternate;
-  padding: 30px;
+.neon {
+    position: relative;
+    overflow: hidden;
+    filter: brightness(200%);
 }
 
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
-  }
-
-  to {
-    text-shadow: 0 0 20px #fff, 0 0 30px #ff4da6, 0 0 40px #ff4da6, 0 0 50px #ff4da6, 0 0 60px #ff4da6, 0 0 70px #ff4da6, 0 0 80px #ff4da6;
-  }
+.text {
+    background-color: black;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    user-select: none;
 }
 
-
-
-.buttonClass {
-  font-size:15px;
-  font-family:Arial;
-  width:140px;
-  height:50px;
-  border-width:1px;
-  color:#fff;
-  border-color:#599bb3;
-  font-weight:bold;
-  border-top-left-radius:8px;
-  border-top-right-radius:8px;
-  border-bottom-left-radius:8px;
-  border-bottom-right-radius:8px;
-  box-shadow: 0px 10px 14px -7px #276873;
-  text-shadow: 0px 1px 0px #3d768a;
-  background:linear-gradient(#599bb3, #408c99);
+.text::before {
+    content: attr(data-text);
+    position: absolute;
+    color: white;
+    filter: blur(0.02em);
+    mix-blend-mode: difference;
 }
 
-.buttonClass:hover {
-  background: linear-gradient(#408c99, #599bb3);
+.gradient {
+    position: absolute;
+    background: linear-gradient(45deg, green, green, green, green, green);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    mix-blend-mode: multiply;
+}
+
+.spotlight {
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(
+            circle,
+            white,
+            transparent 25%
+        ) center / 25% 25%,
+        radial-gradient(
+            circle,
+            white,
+            black 25%
+        ) center / 12.5% 12.5%;
+    animation: light 5s linear infinite;
+    mix-blend-mode: color-dodge;
+}
+
+@keyframes light {
+    to {
+        transform: translate(50%, 50%);
+    }
 }
